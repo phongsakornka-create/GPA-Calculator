@@ -1,92 +1,150 @@
-body{
-    font-family: Arial, sans-serif;
-    background:#340f8b;
-}
-
-.container{
-   .container{
-    width:90%;
-    max-width:800px;
-    margin:30px auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
+/* Reset */
+*{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
 }
 
+/* พื้นหลัง */
+body{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg,#4e54c8,#8f94fb);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* กล่องหลัก */
+.container{
+    width:90%;
+    max-width:900px;
+    background:#ffffff;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+/* หัวข้อ */
 h1{
     text-align:center;
+    color:#4e54c8;
+    margin-bottom:25px;
+    font-size:36px;
 }
 
+/* ฟอร์ม */
 .form{
     display:flex;
-    gap:10px;
-    margin-bottom:20px;
+    gap:15px;
     flex-wrap:wrap;
-}
-}
-
-input,
-select,
-button{
-    padding:10px;
+    margin-bottom:25px;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-bottom:20px;
-}
-
-table,
-th,
-td{
-    border:1px solid #ccc;
-}
-
-th,
-td{
-    padding:10px;
-    text-align:center;
-}
-
-button{
-    cursor:pointer;
-    background:#2196F3;
-    color:white;
-    border:none;
-    border-radius:5px;
-}
-
-button:hover{
-    background:#0b7dda;
-}
-
-.deleteBtn{
-    background:red;
-}
-
+/* Input และ Select */
 input,
 select{
     flex:1;
-    min-width:120px;
+    min-width:150px;
+    padding:14px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+    transition:.3s;
 }
 
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#4e54c8;
+    box-shadow:0 0 10px rgba(78,84,200,.3);
+}
+
+/* ปุ่ม */
 button{
-    padding:10px 16px;
-    cursor:pointer;
-    background:#2196F3;
-    color:white;
+    padding:14px 20px;
     border:none;
-    border-radius:5px;
+    border-radius:10px;
+    background:linear-gradient(45deg,#4e54c8,#6c63ff);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
 }
 
-@media (max-width:768px){
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+
+/* ตาราง */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    overflow:hidden;
+    border-radius:12px;
+}
+
+/* หัวตาราง */
+thead{
+    background:#4e54c8;
+    color:white;
+}
+
+th{
+    padding:15px;
+}
+
+/* ข้อมูล */
+td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+/* สลับสีแถว */
+tbody tr:nth-child(even){
+    background:#f5f6ff;
+}
+
+/* Hover แถว */
+tbody tr:hover{
+    background:#e6e8ff;
+}
+
+/* ปุ่มลบ */
+.deleteBtn{
+    background:#ff4d4d;
+}
+
+.deleteBtn:hover{
+    background:#d60000;
+}
+
+/* ปุ่มคำนวณ */
+#calculateBtn{
+    width:100%;
+    margin-top:20px;
+}
+
+/* ผลลัพธ์ GPA */
+#result{
+    margin-top:25px;
+    text-align:center;
+    color:#4e54c8;
+    font-size:38px;
+    font-weight:bold;
+}
+
+/* Responsive */
+@media(max-width:768px){
 
     .container{
         width:95%;
-        padding:15px;
+        padding:20px;
     }
 
     h1{
@@ -101,21 +159,22 @@ button{
     select,
     button{
         width:100%;
-        box-sizing:border-box;
     }
 
     table{
-        font-size:14px;
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
     }
 
     th,
     td{
-        padding:8px;
+        padding:10px;
+        font-size:14px;
     }
 
     #result{
-        font-size:28px;
-        text-align:center;
+        font-size:30px;
     }
 
 }
