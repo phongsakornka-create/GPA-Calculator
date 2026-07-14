@@ -4,13 +4,15 @@ body{
 }
 
 .container{
-    width:800px;
-    margin:auto;
-    margin-top:30px;
-    background:rgb(111, 111, 225);
+   .container{
+    width:90%;
+    max-width:800px;
+    margin:30px auto;
+    background:white;
     padding:20px;
     border-radius:10px;
     box-shadow:0 0 10px rgba(0,0,0,.2);
+    box-sizing:border-box;
 }
 
 h1{
@@ -21,6 +23,8 @@ h1{
     display:flex;
     gap:10px;
     margin-bottom:20px;
+    flex-wrap:wrap;
+}
 }
 
 input,
@@ -61,4 +65,57 @@ button:hover{
 
 .deleteBtn{
     background:red;
+}
+
+input,
+select{
+    flex:1;
+    min-width:120px;
+}
+
+button{
+    padding:10px 16px;
+    cursor:pointer;
+    background:#2196F3;
+    color:white;
+    border:none;
+    border-radius:5px;
+}
+
+@media (max-width:768px){
+
+    .container{
+        width:95%;
+        padding:15px;
+    }
+
+    h1{
+        font-size:28px;
+    }
+
+    .form{
+        flex-direction:column;
+    }
+
+    input,
+    select,
+    button{
+        width:100%;
+        box-sizing:border-box;
+    }
+
+    table{
+        font-size:14px;
+    }
+
+    th,
+    td{
+        padding:8px;
+    }
+
+    #result{
+        font-size:28px;
+        text-align:center;
+    }
+
 }
