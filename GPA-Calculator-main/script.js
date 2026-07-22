@@ -11,51 +11,70 @@ const result = document.getElementById("result");
 let courses = [];
 
 const gradeText = {
-    4:"A",
-    3.5:"B+",
-    3:"B",
-    2.5:"C+",
-    2:"C",
-    1.5:"D+",
-    1:"D",
-    0:"F"
+    4: "A",
+    3.5: "B+",
+    3: "B",
+    2.5: "C+",
+    2: "C",
+    1.5: "D+",
+    1: "D",
+    0: "F"
 };
 
-addBtn.addEventListener("click",()=>{
+// ห้ามพิมพ์ . และ ,
+credit.addEventListener("keydown", (e) => {
+    if (e.key === "." || e.key === ",") {
+        e.preventDefault();
+    }
+});
 
-    if(subject.value==="" || credit.value===""){
+// รับเฉพาะตัวเลขจำนวนเต็ม
+credit.addEventListener("input", () => {
+    credit.value = credit.value.replace(/[^0-9]/g, "");
+});
+
+addBtn.addEventListener("click", () => {
+
+    if (subject.value.trim() === "" || credit.value === "") {
         alert("กรอกข้อมูลให้ครบ");
         return;
     }
 
-    const course={
-        subject:subject.value,
-        credit:Number(credit.value),
-        grade:Number(grade.value)
+    const creditValue = Number(credit.value);
+
+    if (!Number.isInteger(creditValue) || creditValue <= 0) {
+        alert("หน่วยกิตต้องเป็นจำนวนเต็มที่มากกว่า 0");
+        return;
+    }
+
+    const course = {
+        subject: subject.value,
+        credit: creditValue,
+        grade: Number(grade.value)
     };
 
     courses.push(course);
 
     renderTable();
 
-    subject.value="";
-    credit.value="";
+    subject.value = "";
+    credit.value = "";
 });
 
-function renderTable(){
+function renderTable() {
 
-    courseList.innerHTML="";
+    courseList.innerHTML = "";
 
-    courses.forEach((course,index)=>{
+    courses.forEach((course, index) => {
 
-        courseList.innerHTML+=`
+        courseList.innerHTML += `
         <tr>
             <td>${course.subject}</td>
             <td>${course.credit}</td>
             <td>${gradeText[course.grade]}</td>
             <td>
                 <button class="deleteBtn" data-index="${index}">
-                ลบ
+                    ลบ
                 </button>
             </td>
         </tr>
@@ -63,15 +82,15 @@ function renderTable(){
 
     });
 
-    const deleteButtons=document.querySelectorAll(".deleteBtn");
+    const deleteButtons = document.querySelectorAll(".deleteBtn");
 
-    deleteButtons.forEach(button=>{
+    deleteButtons.forEach(button => {
 
-        button.addEventListener("click",(e)=>{
+        button.addEventListener("click", (e) => {
 
-            const index=e.target.dataset.index;
+            const index = e.target.dataset.index;
 
-            courses.splice(index,1);
+            courses.splice(index, 1);
 
             renderTable();
 
@@ -81,20 +100,20 @@ function renderTable(){
 
 }
 
-calculateBtn.addEventListener("click",()=>{
+calculateBtn.addEventListener("click", () => {
 
-    let totalCredit=0;
-    let totalPoint=0;
+    let totalCredit = 0;
+    let totalPoint = 0;
 
-    courses.forEach(course=>{
+    courses.forEach(course => {
 
-        totalCredit+=course.credit;
-        totalPoint+=course.credit*course.grade;
+        totalCredit += course.credit;
+        totalPoint += course.credit * course.grade;
 
     });
 
-    const gpa= totalCredit===0 ? 0 : totalPoint/totalCredit;
+    const gpa = totalCredit === 0 ? 0 : totalPoint / totalCredit;
 
-    result.textContent=`GPA : ${gpa.toFixed(2)}`;
+    result.textContent = `GPA : ${gpa.toFixed(2)}`;
 
 });
